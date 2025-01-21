@@ -11,67 +11,46 @@ function showPage() {
 
 // Variablen für den Sternenhimmel
 let stars = [];
-let skyHeight;
-let isSpacePressed = false; // Status für Spacebar-Interaktion
+let lines = [];
 
 function setup() {
-    let canvas = createCanvas(windowWidth, windowHeight);
-    canvas.position(0, 0);
-    canvas.style("z-index", "-1");
-    canvas.style("position", "absolute");
+  createCanvas(windowWidth, windowHeight);
 
-    skyHeight = height * 0.8;
-
-    // Generiere Sterne
-    for (let i = 0; i < 300; i++) {
-        stars.push({
-            x: random(width),
-            y: random(skyHeight),
-            size: random([2, 4])
-        });
-    }
+  for (let i = 0; i < width * 0.22; i++) {
+    stars.push(new Constellation());
+  }
 }
 
 function draw() {
-    if (!isSpacePressed) {
-        noStroke();
-
-        // Zeichne Sterne
-        for (let star of stars) {
-            fill(255);
-            circle(star.x, star.y, star.size);
-        }
-    }
+  for (let i = 0; i < stars.length; i++) {
+    stars[i].twinkle();
+    stars[i].display();
+  }
 }
 
-function keyPressed() {
-    if (keyCode === 32) { // Leertaste gedrückt
-        isSpacePressed = true;
-
-        // Elemente ausblenden mit Fade-Out
-        fadeOutElement("loader");
-        fadeOutElement("title");
-        fadeOutElement("spacebar-hint");
-        fadeOutElement("infoBox");
-    }
+function mousePressed() {
+  for (let i = 0; i < stars.length; i++) {
+    stars[i].starClick(mouseX, mouseY);
+    stars[i].lineDraw();
+  }
 }
 
-// Funktion für flüssiges Ausblenden (Fade-Out)
 function fadeOutElement(elementId) {
-    const element = document.getElementById(elementId);
+    const element = document.getElementById(elementId) || document.querySelector(`.${elementId}`);
     if (!element) return;
 
     let opacity = 1; // Start-Opacity
     const fadeInterval = setInterval(() => {
         if (opacity <= 0) {
-            clearInterval(fadeInterval); // Stoppe das Intervall, wenn Opacity 0 ist
-            element.style.display = "none"; // Entferne Element aus dem Layout
+            clearInterval(fadeInterval); // Stop the interval when opacity reaches 0
+            element.style.display = "none"; // Remove element from the layout
         } else {
-            opacity -= 0.0; // Reduziere die Opacity schrittweise
-            element.style.opacity = opacity; // Setze die neue Opacity
+            opacity -= 0.02; // Reduce opacity gradually
+            element.style.opacity = opacity; // Set new opacity
         }
-    }, 30); // Alle 30ms wird die Opacity reduziert
+    }, 30); // Reduce opacity every 30ms
 }
+
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
@@ -89,21 +68,6 @@ function windowResized() {
 }
 
 
-function fadeOutElement(elementId) {
-  const element = document.getElementById(elementId) || document.querySelector(`.${elementId}`);
-  if (!element) return;
-
-  let opacity = 1; // Start-Opacity
-  const fadeInterval = setInterval(() => {
-      if (opacity <= 0) {
-          clearInterval(fadeInterval); // Stoppe das Intervall, wenn Opacity 0 ist
-          element.style.display = "none"; // Entferne Element aus dem Layout
-      } else {
-          opacity -= 0.02; // Reduziere die Opazität schrittweise
-          element.style.opacity = opacity; // Setze die neue Opazität
-      }
-  }, 30); // Alle 30ms
-}
 
 function keyPressed() {
     if (keyCode === 32) { // 32 = Leertaste
@@ -153,121 +117,30 @@ function keyPressed() {
     }
 }
 
-//BUTTONS
-// Funktion für die spezifischen Aktionen der Buttons
-function setupButtonFunctions() {
-    // Home-Button: Zurück zur Startseite
-    document.getElementById("home-button").onclick = () => {
-        window.location.href = "index.html"; // Ersetze durch die URL der Startseite
-    };
+function keyPressed() {
+    if (keyCode === 32) { // Spacebar pressed
+        isSpacePressed = true;
 
-    // Info-Button: Zeige ein Info-Popup
-    document.getElementById("info-button").onclick = () => {
-        alert("This is an information popup. Add your details here!");
-    };
+        // Hide elements using fade-out
+        fadeOutElement("loader");
+        fadeOutElement("title");
+        fadeOutElement("spacebar-hint");
+        fadeOutElement("infoBox");
 
-    // Sound-Button: Hintergrundsound stumm schalten oder aktivieren
-    let soundMuted = false; // Status des Sounds
-    document.getElementById("sound-button").onclick = () => {
-        soundMuted = !soundMuted; // Toggle den Soundstatus
-        if (soundMuted) {
-            console.log("Sound muted"); // Hier kannst du den Sound stummschalten
-        } else {
-            console.log("Sound unmuted"); // Hier kannst du den Sound aktivieren
-        }
-    };
-}
+        // After fade-out completes, show the homepage elements
+        setTimeout(() => {
+            const rectangle = document.getElementById("rectangle");
+            const newText = document.getElementById("infoBox2");
+            const buttonContainer = document.getElementById("button-container");
+            const constellationContainer = document.getElementById("constellationContainer");
+            const starsContainer = document.getElementById("starsContainer");
 
-// Funktion für flüssiges Ausblenden (Fade-Out)
-function fadeOutElement(elementId) {
-    const element = document.getElementById(elementId) || document.querySelector(`.${elementId}`);
-    if (!element) return;
-
-    let opacity = 1;
-    const fadeInterval = setInterval(() => {
-        if (opacity <= 0) {
-            clearInterval(fadeInterval);
-            element.style.display = "none";
-        } else {
-            opacity -= 0.02;
-            element.style.opacity = opacity;
-        }
-    }, 30);
-}
-
-
-
-
-
-
-
-
-let points = []; // Speichert Punkte für das Sternenbild
-let canvas, ctx;
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Initialisiere den Canvas
-  canvas = document.getElementById("starCanvas");
-  ctx = canvas.getContext("2d");
-
-  // Setze die tatsächliche Größe des Canvas
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
-
-  // Hintergrund füllen
-  clearCanvas();
-
-  // Mausinteraktion: Punkt setzen
-  canvas.addEventListener("mousedown", (event) => {
-    addPoint(event);
-    draw();
-
-    // Entferne den Overlay-Text
-    const overlayText = document.getElementById("overlayText");
-    if (overlayText) overlayText.style.display = "none";
-  });
-});
-
-function clearCanvas() {
-  ctx.fillStyle = "black"; // Vollständig schwarzer Hintergrund
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
-
-function addPoint(event) {
-  const rect = canvas.getBoundingClientRect();
-  const x = event.clientX - rect.left;
-  const y = event.clientY - rect.top;
-  points.push({ x, y });
-}
-
-function draw() {
-  // Canvas leeren und Hintergrund neu zeichnen
-  clearCanvas();
-
-  // Punkte und Linien zeichnen
-  ctx.strokeStyle = "white";
-  ctx.fillStyle = "white";
-  ctx.lineWidth = 2;
-
-  for (let i = 0; i < points.length; i++) {
-    // Punkt zeichnen
-    ctx.beginPath();
-    ctx.arc(points[i].x, points[i].y, 4, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Linie zum vorherigen Punkt zeichnen
-    if (i > 0) {
-      ctx.beginPath();
-      ctx.moveTo(points[i - 1].x, points[i - 1].y);
-      ctx.lineTo(points[i].x, points[i].y);
-      ctx.stroke();
+            // Display the homepage elements
+            rectangle.style.display = "block";
+            newText.style.display = "block";
+            buttonContainer.style.display = "flex";
+            constellationContainer.style.display = "flex";
+            starsContainer.style.display = "flex";
+        }, 500); // Wait for the fade-out effect before showing new content
     }
-  }
 }
-
-
-
-
-
-
-
