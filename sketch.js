@@ -153,8 +153,8 @@ function keyPressed() {
 // Funktion für die spezifischen Aktionen der Buttons
 function setupButtonFunctions() {
     // Home-Button: Zurück zur Startseite
-    document.getElementById("home-button").onclick = () => {
-        window.location.href = "index.html"; // Ersetze durch die URL der Startseite
+    document.getElementById("homeButton").onclick = () => {
+        window.location.href = "https://monikaho29.github.io/A3_Code_Based_Expression/"; // Ersetze durch die URL der Startseite
     };
 
     // Info-Button: Zeige ein Info-Popup
