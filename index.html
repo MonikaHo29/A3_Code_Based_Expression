@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Castoro+Titling&family=Charm:wght@400;700&
     family=Cinzel+Decorative&family=Cinzel:wght@400..900&family=Elsie:wght@400;900&family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&
     family=Gilda+Display&family=Kavivanar&family=Moon+Dance&family=Playball&family=Quintessential&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <!--Loading Page-->
@@ -36,24 +37,24 @@
             <!--Buttons-->
             <div id="button-container">
                 <button id="home-button">
-                    <img src="graphics/webp/home.webp" alt="Home Button">
+                    <img src="graphics/webp/icon/home_icon.webp" alt="Home Button">
                 </button>
                 <button id="info-button">
-                    <img src="graphics/webp/info.webp" alt="Info Button">
+                    <img src="graphics/webp/icon/information_icon.webp" alt="Info Button">
                 </button>
                 <button id="sound-button">
-                    <img src="graphics/webp/sound.webp" alt="Sound Button">
+                    <img src="graphics/webp/icon/mute_icon.webp" alt="Sound Button">
                 </button>
             </div>
 
-            <!--INfobox-->
+            <!--Infobox-->
             <div class="infoBox" id="infoBox2">
                 <p>You paint the sky with every movement, make stars shine and bring the cosmos into harmony.</p>
             </div>
 
             <!--Canvas-->
             <div id="rectangle"></div>
-            <p id="canvaText">Draw your constellation and let your identity become visible. </p>
+            
 
                <!--Constelllations-->
             <div id="constellationContainer">
@@ -81,13 +82,18 @@
                 <img id="star8" src="graphics/webp/design_elements/star_1.webp" alt="star">
                 <img id="star9" src="graphics/webp/design_elements/star_1.webp" alt="star">
             </div>
+            <div id="container">
+                <canvas id="starCanvas"></canvas>
+              </div>
+              
+              
+              
+    
         </div>
       
-
 
         <!--Sternenhimmel-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
         <script src="sketch.js"></script>
-        
 </body>
 </html>

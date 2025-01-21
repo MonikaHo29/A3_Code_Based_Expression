@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(graphics/webp/background.webp); /* Schwarzer Hintergrund */
+  }
+  
+  /* Container für das Canvas */
+  #containerCanvas {
+    position: relative;
+    width: 30%; /* Breite des Containers */
+    height: 60%; /* Höhe des Containers */
+  }
+  
+  /* Canvas Styling */
+  canvas {
+    width: 100%; /* Passt sich an die Containergröße an */
+    height: 100%;
+    background-color: black; /* Schwarzer Hintergrund des Canvas */
+    display: block;
+  }

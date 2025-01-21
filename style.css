@@ -9,8 +9,12 @@ body {
   overflow-x: hidden;
   width: 100%;
   overflow-y:hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
 }
-
 /*-----------------BACKGROUND------------------*/
 .ground {
   position: absolute;
@@ -141,18 +145,18 @@ h1 {
   opacity: 0.6; /* Startzustand: Unsichtbar */
   z-index: 2; /* Über den anderen Inhalten */
 }
-
+/*
 #rectangle {
   position: absolute;
   top: 10%;
   left: 36%;
-  width: 30%; /* Breite des Rechtecks */
-  height: 60%; /* Höhe des Rechtecks */
-  background-color: rgba(255, 255, 255, 0.2); /* Halbtransparentes Weiß */
-  opacity: 0; /* Startzustand: Unsichtbar */
-  transition: opacity 1s ease-in-out; /* Sanftes Einblenden */
+  width: 30%; 
+  height: 60%; 
+  background-color: rgba(255, 255, 255, 0.2); 
+  opacity: 0;
+  transition: opacity 1s ease-in-out; 
 }
-
+*/
 
 /*-----------------BUTTONS------------------*/
 /* Container für die Buttons */
@@ -190,14 +194,6 @@ h1 {
 }
 #constellationContainer{
   opacity: 0.1;
-}
-#canvaText{
-  position: absolute;
-  top: 30%;
-  left: 41%;
-  width: 20%;
-  opacity: 0; /* Startzustand: Unsichtbar */
-  transition: opacity 1s ease-in-out; /* Sanftes Einblenden */
 }
 #starsContainer{
   opacity: 0.1;
@@ -361,8 +357,8 @@ h1 {
 /* Button-Container */
 #button-container {
   position: absolute;
-  top: 70%;
-  left: 50%;
+  top: 25%;
+  left: 16%;
   transform: translate(-50%, -50%);
   display: flex;
   gap: 20px;
@@ -375,8 +371,7 @@ h1 {
   border: none;
   padding: 0;
   cursor: pointer;
-  width: 100px; /* Breite */
-  height: 100px; /* Höhe */
+  width: 15%;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -390,3 +385,31 @@ h1 {
 #button-container button:hover {
   transform: scale(1.1);
 }
+
+
+
+#container {
+  position: relative;
+  width: 500px;
+  height: 400px;
+  border: 2px solid white;
+  margin: auto;
+}
+
+
+canvas {
+  width: 100%;
+  height: 100%;
+  background-color: black; /* Vollständig schwarzer Hintergrund */
+  display: block;
+  border: 2px solid white;
+}
+
+body {
+  pointer-events: none; /* Deaktiviert Klicks für den gesamten Hintergrund */
+}
+
+#container, canvas {
+  pointer-events: auto; /* Aktiviert Klicks nur für den Container und Canvas */
+}
+

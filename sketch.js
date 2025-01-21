@@ -121,6 +121,7 @@ function keyPressed() {
             const constellationContainer = document.getElementById("constellationContainer");
             const starsContainer = document.getElementById("starsContainer");
             const canvaText = document.getElementById("canvaText");
+            const starCanvas = document.getElementById("starCanvas");
 
             // Elemente einblenden
             rectangle.style.display = "block";
@@ -129,6 +130,7 @@ function keyPressed() {
             canvaText.style.display = "flex";
             constellationContainer.style.display = "flex";
             starsContainer.style.display = "flex";
+            starCanvas.style.display = "flex";
 
             rectangle.style.transition = "opacity 1s ease-in-out";
             newText.style.transition = "opacity 1s ease-in-out";
@@ -136,6 +138,7 @@ function keyPressed() {
             canvaText.style.transition = "opacity 1s ease-in-out";
             constellationContainer.style.display = "opacity 1s ease-in-out";
             starsContainer.style.display = "opacity 1s ease-in-out";
+            starCanvas.style.display = "opacity 1s ease-in-out";
 
             rectangle.style.opacity = 1;
             newText.style.opacity = 1;
@@ -143,13 +146,14 @@ function keyPressed() {
             canvaText.style.opacity = 1;
             constellationContainer.style.opacity = 0.1;
             starsContainer.style.opacity = 0.1;
+            starCanvas.style.display =  0.1;
 
             setupButtonFunctions();
         }, 2000); // Nach 2 Sekunden
     }
 }
 
-
+//BUTTONS
 // Funktion für die spezifischen Aktionen der Buttons
 function setupButtonFunctions() {
     // Home-Button: Zurück zur Startseite
@@ -190,3 +194,80 @@ function fadeOutElement(elementId) {
         }
     }, 30);
 }
+
+
+
+
+
+
+
+
+let points = []; // Speichert Punkte für das Sternenbild
+let canvas, ctx;
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialisiere den Canvas
+  canvas = document.getElementById("starCanvas");
+  ctx = canvas.getContext("2d");
+
+  // Setze die tatsächliche Größe des Canvas
+  canvas.width = canvas.clientWidth;
+  canvas.height = canvas.clientHeight;
+
+  // Hintergrund füllen
+  clearCanvas();
+
+  // Mausinteraktion: Punkt setzen
+  canvas.addEventListener("mousedown", (event) => {
+    addPoint(event);
+    draw();
+
+    // Entferne den Overlay-Text
+    const overlayText = document.getElementById("overlayText");
+    if (overlayText) overlayText.style.display = "none";
+  });
+});
+
+function clearCanvas() {
+  ctx.fillStyle = "black"; // Vollständig schwarzer Hintergrund
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function addPoint(event) {
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  points.push({ x, y });
+}
+
+function draw() {
+  // Canvas leeren und Hintergrund neu zeichnen
+  clearCanvas();
+
+  // Punkte und Linien zeichnen
+  ctx.strokeStyle = "white";
+  ctx.fillStyle = "white";
+  ctx.lineWidth = 2;
+
+  for (let i = 0; i < points.length; i++) {
+    // Punkt zeichnen
+    ctx.beginPath();
+    ctx.arc(points[i].x, points[i].y, 4, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Linie zum vorherigen Punkt zeichnen
+    if (i > 0) {
+      ctx.beginPath();
+      ctx.moveTo(points[i - 1].x, points[i - 1].y);
+      ctx.lineTo(points[i].x, points[i].y);
+      ctx.stroke();
+    }
+  }
+}
+
+
+
+
+
+
+
