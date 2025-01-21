@@ -12,14 +12,17 @@ body {
   height: 100%;
   bottom: 0;
   left: 0;
-  background-size: 50%;
-  background-repeat: repeat-x;
-  background-position: bottom 0 left 0;
   z-index: 999;
-  transition: none;
-  animation: none;
 }
 
+@keyframes particleAnimation {
+  28% {
+    left: 0;
+  }
+  100% {
+    left: 300%;
+  }
+}
 
 .wrapper {
   position: absolute;
@@ -39,6 +42,9 @@ body {
   width: 1px;
   height: 1px;
   background-color: white;
+  animation-name: particleAnimation;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .p::before {
@@ -53,34 +59,21 @@ body {
 }
 
 
-
-#loader {
-  width: %;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: loaderAnimation 8s forwards;
+#cycnus{
+    position: absolute;
+    width: 20%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    opacity: 0.5;
 }
-@keyframes loaderAnimation {
-  0% {
-    width: 8%;
-    opacity: 0.1;
-  }
-  25% {
-    width: 12%;
-    opacity: 1;
-  }
-  50% {
-    width: 8%;
-    opacity: 0.1;
-  }
-  75% {
-    width: 12%;
-    opacity: 1;
-  }
-  100% {
-    width: 8%;
-    opacity: 0.1;
-  }
+
+#aquila{
+    position: absolute;
+    width: 20%;
+    top: 0;
+    left: 60%;
+    z-index: 100;
+    opacity: 0.5;
+
 }
