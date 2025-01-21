@@ -153,8 +153,8 @@ function keyPressed() {
 // Funktion für die spezifischen Aktionen der Buttons
 function setupButtonFunctions() {
     // Home-Button: Zurück zur Startseite
-    document.getElementById("homeButton").onclick = () => {
-        window.location.href = "https://monikaho29.github.io/A3_Code_Based_Expression/"; // Ersetze durch die URL der Startseite
+    document.getElementById("home-button").onclick = () => {
+        window.location.href = "index.html"; // Ersetze durch die URL der Startseite
     };
 
     // Info-Button: Zeige ein Info-Popup
@@ -172,4 +172,21 @@ function setupButtonFunctions() {
             console.log("Sound unmuted"); // Hier kannst du den Sound aktivieren
         }
     };
+}
+
+// Funktion für flüssiges Ausblenden (Fade-Out)
+function fadeOutElement(elementId) {
+    const element = document.getElementById(elementId) || document.querySelector(`.${elementId}`);
+    if (!element) return;
+
+    let opacity = 1;
+    const fadeInterval = setInterval(() => {
+        if (opacity <= 0) {
+            clearInterval(fadeInterval);
+            element.style.display = "none";
+        } else {
+            opacity -= 0.02;
+            element.style.opacity = opacity;
+        }
+    }, 30);
 }
