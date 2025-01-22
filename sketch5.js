@@ -8,11 +8,6 @@ let colorMode = 0; // 0: Weiß, 1: Blau/Gelb, 2: Lila/Pink
 let isPaused = false; // Zustand, ob der Sternenschauer gestoppt ist
 let followMouse = false; // Zustand, ob der Schauer der Maus folgt
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background(0);
-}
-
 function draw() {
   if (isPaused) return; // Wenn pausiert, nichts zeichnen
 
@@ -113,3 +108,7 @@ function createStar() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+
+
+
+

@@ -1,0 +1,306 @@
+html, body {
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family:"Gentium Plus", serif;
+  font-size: 2em;
+  color: white;
+  background-color: #000016;
+}
+
+canvas {
+  display: block;
+}
+
+
+
+#logo {
+  width: 28%;
+  position: fixed; /* Fixiert das Logo im Sichtbereich */
+  top: 28%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+}
+#title {
+  position: absolute;
+  font-size: 2em;
+  margin-top: 35%;
+  text-align: center;
+  font-family: "Cinzel Decorative", serif;
+  text-shadow: 4px 4px 10px rgba(255, 255, 255, 0.8); /* Weißer Schatten */
+  opacity: 0;
+  animation: fadeInOut 4s ease-in-out forwards;
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.infoBox{
+  font-size: 2em;
+  background-color: rgba(255, 255, 255, 0.453);
+  padding: 0.7%;
+}
+#infoBox1{
+  position: absolute;
+  width: 68%;
+  margin-top:30%;
+  animation: fadeInBox 3s ease-in-out forwards; /* Animation fürs Einblenden */
+  animation-delay: 2s; /* Einblenden nach 2 Sekunden */
+  animation-fill-mode: forwards; /* Stoppt Animation bei Endzustand */
+  opacity: 0;
+}
+p{
+  font-size: 0.2em;
+  line-height: 1.8em;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+}
+@keyframes fadeInBox {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* Spacebar-Hinweis */
+#spacebar-hint {
+  position: absolute;
+  top: 52%;
+  left: 39%;
+  opacity: 0; /* Startzustand: Unsichtbar */
+  transition: opacity 0.5s ease-in-out;
+  animation: fadeInBox 3s ease-in-out forwards;
+  animation-delay: 4s; /* Einblenden nach 4 Sekunden */
+  animation-fill-mode: forwards;
+}
+h3{
+  font-size: 0.5em;
+  font-weight: lighter;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.77);
+}
+
+
+
+
+
+
+
+
+#constellationContainer{
+  opacity: 1;
+  animation: glowAnimation 4s ease-in-out infinite;
+  margin-top: -100px;  /* Verschiebt den Container nach oben */
+}
+
+/* Die Animation für den Leuchteffekt */
+@keyframes glowAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1; /* Höchste Deckkraft */
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#starsContainer{
+  opacity: 0.8;
+  animation: glowAnimation 3s ease-in-out infinite;
+}
+#cassiopea{
+  position: absolute;
+  top: 3%;
+  left: 6%;
+  width: 22%;
+  rotate: 20deg;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#orion{
+  position: absolute;
+  top: 16%;
+  left: 25%;
+  width: 30%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+  z-index: -10;
+}
+#pegasus{
+  position: absolute;
+  top: 50%;
+  left: -3%;
+  width: 28%;
+  rotate: 30deg;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#const1 {
+  position: absolute;
+  top: 10%;
+  left: 35%;
+  width: 20%;
+  rotate: 26deg;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#const2 {
+  position: absolute;
+  top: 72%;
+  left: 55%;
+  width: 15%;
+  rotate: 40deg;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#const3 {
+  position: absolute;
+  top: 3%;
+  left: 55%;
+  width: 16%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#virgo{
+  position: absolute;
+  top: 3%;
+  left: 60%;
+  width: 26%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#const4{
+  position: absolute;
+  top: 72%;
+  left: 80%;
+  width: 15%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#delphinus{
+  position: absolute;
+  top: 40%;
+  left: 85%;
+  width: 22%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#const5{
+  position: absolute;
+  top: 15%;
+  left: 88%;
+  width: 10%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#star1{
+  position: absolute;
+  top: 35%;
+  left: 9%;
+  width: 4%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#star2{
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 4%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#star3{
+  position: absolute;
+  top: 42%;
+  left: 30%;
+  width: 4%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#star4{
+  position: absolute;
+  top: 75%;
+  left: 43%;
+  width: 4%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#star5{
+  position: absolute;
+  top: 70%;
+  left: 68%;
+  width: 4%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#star6{
+  position: absolute;
+  top: 20%;
+  left: 70%;
+  width: 4%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#star7{
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  width: 4%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#star8{
+  position: absolute;
+  top: 30%;
+  left: 90%;
+  width: 4%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+#star9{
+  position: absolute;
+  top: 10%;
+  left: 80%;
+  width: 4%;
+  opacity: 1; /* Startzustand: Unsichtbar */
+}
+
+
+
+
+/* Container für die Buttons */
+#button-container {
+  position: absolute;
+  top: 26%;
+  left: 18%;
+  transform: translate(-50%, -50%);
+  display: flex; /* Flexbox für vertikale Anordnung */
+  flex-direction: column; /* Vertikale Stapelung */
+  gap: 20px; /* Abstand zwischen den Buttons */
+  z-index: 2; /* Über anderen Elementen */
+  opacity: 1; /* Unsichtbar zu Beginn */
+}
+
+/* Buttons */
+#button-container button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 15%; /* Breite des Buttons */
+}
+
+/* Bilder in den Buttons */
+#button-container button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Bild passend skalieren */
+}
+
+/* Hover-Effekt */
+#button-container button:hover {
+  transform: scale(1.1); /* Button vergrößert sich leicht beim Hover */
+}
+
+#home-button, #info-button, #sound-button :hover{
+  opacity: 1;
+}
+
+
+
+
+
