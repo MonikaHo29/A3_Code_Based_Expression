@@ -122,7 +122,7 @@ function draw() {
 
     // Display text near constellations (bottom-right corner) with background
   // Hintergrund und Text zeichnen
-    const textX = width - 220;
+    const textX = width - 224 ;
     const textY = height - 30;
     const textW = textWidth("PRESS  [Z-KEY] TO RESET,  [C-KEY] TO CHANGE PATTERNS") + 40; // Mehr Platz an den Seiten
     const textH = 50; // Höheres Rechteck
@@ -247,7 +247,33 @@ function mousePressed() {
       }
     }
   }
+
+  if (!showUI) {
+    let closestStar = null;
+
+    // Check if mouse is over a star
+    for (let star of stars) {
+      let d = dist(mouseX, mouseY, star.x, star.y);
+      if (d < star.r * 2) {
+        closestStar = star;
+        break;
+      }
+    }
+
+    if (closestStar) {
+      closestStar.glow = true; // Make the star glow permanently
+      closestStar.isAnimating = true; // Trigger the animation
+
+      // Display text sequence
+      showTextSequence([
+        "Draw your constellation and let your identity become visible.",
+        "Discover your inner light and let it shine across the sky.Let the Stars Speak for You.",
+        "Let the starburst shower fall for you - it cleanses the darkness, releases doubt and reveals your hidden light. Step by step, you will find clarity and recognize your inner beauty!"
+      ]);
+    }
+  }
 }
+
 
 function keyPressed() {
   if (key === ' ') { // Check if spacebar is pressed
@@ -379,6 +405,32 @@ function drawStar(x, y, radius1, radius2, npoints) {
   endShape(CLOSE);
 }
 
+function showTextSequence(texts) {
+  const textContainer = document.getElementById("textContainer");
+  if (!textContainer) return;
+
+  textContainer.innerHTML = "Draw your constellation and let your identity become visible.";"Discover your inner light and let it shine across the sky. Let the Stars Speak for You."; "Let the starburst shower fall for you - it cleanses the darkness, releases doubt and reveals your hidden light. Step by step, you will find clarity and recognize your inner beauty!"; // Clear previous text
+  let delay = 0;
+
+  texts.forEach((text, index) => {
+    setTimeout(() => {
+      // Create a new paragraph for each text
+      const p = document.createElement("p");
+      p.textContent = text;
+      p.style.opacity = 0;
+      p.style.transition = "opacity 1s ease-in-out";
+
+      textContainer.appendChild(p);
+
+      // Fade in the text
+      setTimeout(() => {
+        p.style.opacity = 1;
+      }, 10);
+    }, delay);
+
+    delay += 2000; // Delay for each text (2 seconds)
+  });
+}
 
 
 
