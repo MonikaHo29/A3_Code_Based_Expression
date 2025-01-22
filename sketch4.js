@@ -382,12 +382,59 @@ function drawStar(x, y, radius1, radius2, npoints) {
 
 
 
+const audio = document.getElementById("backgroundSound");
+const soundButton = document.getElementById("sound-button");
+const soundIcon = document.getElementById("sound-icon");
+
+// Icons für Mute und Unmute
+const muteIconSrc = "graphics/webp/icon/mute_icon.webp";
+const unmuteIconSrc = "graphics/webp/icon/unmute_icon.webp";
+
+soundButton.addEventListener("click", () => {
+  if (audio.muted) {
+    audio.muted = false;
+    soundIcon.src = muteIconSrc; // Wechsel zu Unmute-Icon
+  } else {
+    audio.muted = true;
+    soundIcon.src = unmuteIconSrc; // Wechsel zu Mute-Icon
+  }
+});
 
 
 
 
 
 
+const modal = document.getElementById("interaction-modal");
+  const infoButton = document.getElementById("info-button");
+  const closeButton = document.querySelector(".close-button");
+
+  // Öffnet das Modal, wenn auf den Info-Button geklickt wird
+  infoButton.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
+
+  // Schließt das Modal, wenn der Close-Button angeklickt wird
+  closeButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // Schließt das Modal, wenn außerhalb des Fensters geklickt wird
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+
+
+
+  const homeButton = document.getElementById("home-button");
+
+  // Klickereignis für den Home-Button
+  homeButton.addEventListener("click", () => {
+    window.location.href = "index.html"; // Link zur Startseite
+  });
 
 
 
